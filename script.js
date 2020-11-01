@@ -17,7 +17,10 @@ window.onload = function() {
       var canvas = document.createElement('canvas');
       canvas.width = canvasWidth;
       canvas.height = canvasHeight;
-      canvas.style.border = "1px solid";
+      canvas.style.border = "30px solid #855723";
+      canvas.style.margin = "50px auto";
+      canvas.style.display = "block"
+      canvas.style.backgroundColor = "#603618"
       document.body.appendChild(canvas);
         ctx = canvas.getContext('2d');
         snakee = new Snake([[6, 4],[5, 4], [4, 4] ], "right");
@@ -40,18 +43,31 @@ window.onload = function() {
           
         }
         ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+        displayScore();
         snakee.draw();
         applee.draw();
-        displayScore();
         setTimeout(refreshCanvas, delay);
       }
     }
 
     function gameOver() {
       ctx.save();
-      ctx.fillText("GAME OVER", 5, 15);
-      ctx.fillText("YOU LOSE", 5, 30);
-      ctx.fillText("Appuyer sur la touche Espace pour rejouer ...", 5, 45);
+      ctx.font = "bold 20px sans-serif";
+      ctx.fillStyle = "#B06660";
+      ctx.strokeStyle = "#855723";
+      ctx.lineWidth = 6;
+      ctx.strokeText("GAME OVER", 5, 20);
+      ctx.fillText("GAME OVER", 5, 20);
+      ctx.fillStyle = "#D9A88F";
+      ctx.strokeStyle = "#855723"
+      ctx.lineWidth = 6;
+      ctx.strokeText("YOU LOSE", 5, 45);
+      ctx.fillText("YOU LOSE", 5, 45);
+      ctx.fillStyle = "#EAC3B9";
+      ctx.strokeStyle = "#855723"
+      ctx.lineWidth = 6;
+      ctx.strokeText("Appuyer sur la touche Espace pour rejouer ...", 5, 65);
+      ctx.fillText("Appuyer sur la touche Espace pour rejouer ...", 5, 65);
       ctx.restore();
     }
 
@@ -64,6 +80,8 @@ window.onload = function() {
 
     function displayScore() {
       ctx.save();
+      ctx.font = "bold 100px sans-serif";
+      ctx.fillStyle = "#B06660";
       ctx.fillText(score.toString(), 5, canvasHeight -5);
       ctx.restore();
     }
